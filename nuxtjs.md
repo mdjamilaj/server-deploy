@@ -1,12 +1,21 @@
 
 # Update apt
-``` sudo apt-get update ```
+```
+ sudo apt-get update 
+
+```
 
 # Install Nginx
-``` sudo apt-get install nginx ``` 
+``` 
+sudo apt-get install nginx 
+
+``` 
 
 # Site  availables edit
-``` nano /etc/nginx/sites-available/default ``` 
+``` 
+nano /etc/nginx/sites-available/default 
+
+``` 
 
 # Set the code
 
@@ -30,44 +39,100 @@ server {
 }
 ```
 
-``` sudo nginx -t ```
-``` sudo systemctl restart nginx ```
+``` 
+sudo nginx -t
+
+ ```
+
+
+``` 
+sudo systemctl restart nginx
+
+ ```
 
 # nvm Install
 
-``` curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh ```
+```
+ curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh 
+ 
+ ```
 
 
-``` nano install_nvm.sh ```
+```
+ nano install_nvm.sh 
+ 
+ ```
 
-``` bash install_nvm.sh ```
+```
+ bash install_nvm.sh 
+ 
+ ```
 
-``` ource ~/.profile ```
+```
+ ource ~/.profile 
+ 
+ ```
 
-``` nvm ls-remote ```
+```
+ nvm ls-remote 
+ 
+ ```
 
-``` nvm install 14.17.4 ```
+```
+ nvm install 14.17.4 
+ 
+ ```
 
-``` nvm use 14.17.4 ```
+```
+ nvm use 14.17.4 
+ 
+ ```
 
-``` node -v  ```
-``` npm -v  ```
+```
+ node -v  
+ 
+ ```
+
+```
+ npm -v  
+ ```
 
 
 # PM2 install
 
-``` npm install pm2 -g ```
-``` pm2 start npm -- start ```
-``` pm2 start test --interpreter none -- --port 3000 ```
-``` pm2 start npm --name "test" -- run start ```
+```
+ npm install pm2 -g 
+ 
+ ```
+```
+ pm2 start npm -- start 
+ 
+ ```
+```
+ pm2 start test --interpreter none -- --port 3000 
+ 
+ ```
+```
+ pm2 start npm --name "test" -- run start 
+ 
+ ```
 
 
 
 # Install Git
 
-``` mkdir /home/repo && cd  /home/repo ```
-``` git init --bare ```
-``` nano hooks/post-receive ```
+```
+ mkdir /home/repo && cd  /home/repo 
+ 
+ ```
+```
+ git init --bare 
+ 
+ ```
+```
+ nano hooks/post-receive 
+ 
+ ```
 
 ```
 #!/bin/sh
@@ -120,7 +185,11 @@ done
 
 # Repo add local
 
+```  
+
 git remote add prod ssh://root@206.189.132.184/home/repo
+
+```
 
 
 
