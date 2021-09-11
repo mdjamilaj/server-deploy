@@ -108,8 +108,10 @@ sudo systemctl restart nginx
  pm2 start npm -- start 
  
  ```
+if use spasific port than run the command
 ```
- pm2 start test --interpreter none -- --port 3000 
+ pm2 start test --interpreter none -- --port 5000
+ pm2 start test --interpreter none -- --port your_port 
  
  ```
 ```
