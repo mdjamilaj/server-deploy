@@ -1,3 +1,7 @@
+# Go to server
+```
+ ssh username@server_ip 
+```
 
 # Update apt
 ```
@@ -37,7 +41,6 @@ server {
 ``` 
 sudo nginx -t
  ```
-
 
 ``` 
 sudo systemctl restart nginx
