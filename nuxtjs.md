@@ -2,19 +2,16 @@
 # Update apt
 ```
  sudo apt-get update 
-
 ```
 
 # Install Nginx
 ``` 
 sudo apt-get install nginx 
-
 ``` 
 
 # Site  availables edit
 ``` 
 nano /etc/nginx/sites-available/default 
-
 ``` 
 
 # Set the code
@@ -34,63 +31,51 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-
-
 }
 ```
 
 ``` 
 sudo nginx -t
-
  ```
 
 
 ``` 
 sudo systemctl restart nginx
-
  ```
 
 # nvm Install
 
 ```
  curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh 
- 
  ```
 
 
 ```
  nano install_nvm.sh 
- 
  ```
 
 ```
  bash install_nvm.sh 
- 
  ```
 
 ```
  ource ~/.profile 
- 
  ```
 
 ```
  nvm ls-remote 
- 
  ```
 
 ```
  nvm install 14.17.4 
- 
  ```
 
 ```
  nvm use 14.17.4 
- 
  ```
 
 ```
  node -v  
- 
  ```
 
 ```
@@ -101,15 +86,12 @@ sudo systemctl restart nginx
 
 ```
  mkdir /home/repo && cd  /home/repo 
- 
  ```
 ```
  git init --bare 
- 
  ```
 ```
  nano hooks/post-receive 
- 
  ```
 
 ```
@@ -181,7 +163,6 @@ ssh username@server_ip
 
 ```
  npm install pm2 -g 
- 
  ```
  
 ```
@@ -190,17 +171,14 @@ cd /var/www/html/frontend
 
 ```
  pm2 start npm -- start 
- 
  ```
 if use spasific port than run the command
 ```
  pm2 start test --interpreter none -- --port 5000
  pm2 start test --interpreter none -- --port your_port 
- 
  ```
 ```
  pm2 start npm --name "test" -- run start 
- 
  ```
 
 
