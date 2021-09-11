@@ -97,30 +97,6 @@ sudo systemctl restart nginx
  npm -v  
  ```
 
-
-# PM2 install
-
-```
- npm install pm2 -g 
- 
- ```
-```
- pm2 start npm -- start 
- 
- ```
-if use spasific port than run the command
-```
- pm2 start test --interpreter none -- --port 5000
- pm2 start test --interpreter none -- --port your_port 
- 
- ```
-```
- pm2 start npm --name "test" -- run start 
- 
- ```
-
-
-
 # Install Git
 
 ```
@@ -188,160 +164,85 @@ done
 # Repo add local
 
 ```  
-
-git remote add prod ssh://root@206.189.132.184/home/repo
-
+git remote add prod ssh://root@server_ip/home/repo
+```
+&
+```  
+git push prod master
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Extra Code 
-
-
-
+#Almost done now just run server
+```
+ssh username@server_ip
 ```
 
+# PM2 install
+
+```
+ npm install pm2 -g 
+ 
+ ```
+ 
+```
+cd /var/www/html/frontend
+```
+
+```
+ pm2 start npm -- start 
+ 
+ ```
+if use spasific port than run the command
+```
+ pm2 start test --interpreter none -- --port 5000
+ pm2 start test --interpreter none -- --port your_port 
+ 
+ ```
+```
+ pm2 start npm --name "test" -- run start 
+ 
+ ```
+
+
+
+# Multi Domain default
+
+```
+#NuxtJS
 server {
-  index index.html;
-    server_name 159.65.138.13;
-
-        location / {
+    server_name example.com www.example.com;
+    # Our Node.js application
+    location / {
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 
-
-
-
 }
+
+#Laravel
 server {
-  index index.html;
-    server_name techflav.com;
-root /var/www/html/frontend/dist;
+    root /var/www/server/public;
+    index index.php index.html index.htm index.nginx-debian.html;
 
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Content-Type-Options "nosniff";
-
-    index index.html index.htm index.php;
-
-    charset utf-8;
+    server_name admin.example.com www.admin.example.com;
 
     location / {
-        try_files $uri /index.html;
+     try_files $uri $uri/ /index.php?$query_string;
     }
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
 
     location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
     }
 
-    location ~ /\.(?!well-known).* {
+    location ~ /\.ht {
         deny all;
     }
-
-   listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/techflav.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/techflav.com/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
 }
-
-server {
-  index index.html;
-    server_name www.techflav.com;
-
-  root /var/www/html/frontend/dist;
-
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Content-Type-Options "nosniff";
-
-    index index.html index.htm index.php;
-
-    charset utf-8;
-
-    location / {
-        try_files $uri /index.html;
-    }
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
-
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
-
-
-    location ~ /\.(?!well-known).* {
-        deny all;
-    }
-
-
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/techflav.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/techflav.com/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-}
-
-
-server {
-    if ($host = techflav.com) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-
-    server_name techflav.com;
-    listen 80;
-    return 404; # managed by Certbot
-
-
-}
-
-server {
-    if ($host = www.techflav.com) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-
-    server_name www.techflav.com;
-    listen 80;
-    return 404; # managed by Certbot
-
-
-}
-
 
 ```
