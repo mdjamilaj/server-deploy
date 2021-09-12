@@ -292,3 +292,12 @@ my sql access
 ALTER USER 'tinams_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY '#@009257Ad@#';
 flush privileges;
 ```
+
+
+#permission
+
+```
+find /var/www/html/phpbackend -type d -exec chmod 755 {} \;
+find /var/www/html/phpbackend -type f -exec chmod 644 {} \;
+sudo chmod -R 755 /var/www/html/phpbackend
+```
