@@ -256,3 +256,39 @@ AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=us-east-1
 AWS_BUCKET=
 ```
+#Adonisjs Setup
+
+`
+nano .env
+`
+and push the code
+```
+PORT=3333
+HOST=localhost
+NODE_ENV=development
+APP_KEY=s4ohq8_dPAC4spfX-Swfz1_G1BE9kuE0
+DB_CONNECTION=mysql
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER='db_name'
+MYSQL_PASSWORD='db_pass'
+MYSQL_DB_NAME=tinams_admin
+SMTP_HOST='smtp.gmail.com'
+SMTP_PORT=465
+SMTP_USERNAME='mdjamilaj1@gmail.com'
+SMTP_PASSWORD='hbsqbfoffjzfuvoh'
+CACHE_VIEWS=false
+
+
+admin_frontend_url=http://localhost:5000/
+GOOGLE_CLIENT_ID=954060416186-6gnhga7859hhlf5lbsfi8turooiljelj.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=QUDTUEGKe9GJvLXooP4M3TGG
+FACEBOOK_CLIENT_ID=853392751959368
+FACEBOOK_CLIENT_SECRET=3393279459cfcbf617cbe7535b9a14ee
+```
+
+my sql access
+```
+ALTER USER 'tinams_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY '#@009257Ad@#';
+flush privileges;
+```
