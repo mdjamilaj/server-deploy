@@ -1,11 +1,12 @@
 ### Server Deploy Nuxt Adonis Laravel
+ ```
     ssh username@server_ip 
     sudo apt-get update
 	sudo apt-get install nginx 
 	nano /etc/nginx/sites-available/default 
-
+```
 Code
-``````
+```
 server {
     server_name nexxers.com www.nexxers.com;
     location / {
