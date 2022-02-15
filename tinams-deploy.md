@@ -249,8 +249,13 @@ pm2 start npm --name "client" -- run start
 ```
 
 
+#Certbot add linux
 
-
+```
+sudo snap install --classic certbot  //Don't no it's mandatory.
+sudo apt install certbot python3-certbot-nginx
+sudo certbot certonly --nginx
+```
 
 
 
