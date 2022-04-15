@@ -250,8 +250,11 @@ pm2 start npm --name "client" -- run start
 
 
 #Certbot add linux
-
+https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
 ```
+apt install snapd
+snap install core
+snap refresh core
 sudo snap install --classic certbot  //Don't no it's mandatory.
 sudo apt install certbot python3-certbot-nginx
 sudo certbot certonly --nginx
