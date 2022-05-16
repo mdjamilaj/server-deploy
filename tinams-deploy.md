@@ -258,6 +258,7 @@ snap refresh core
 sudo snap install --classic certbot  //Don't no it's mandatory.
 sudo apt install certbot python3-certbot-nginx
 sudo certbot certonly --nginx
+sudo certbot --nginx -d example.com -d www.example.com
 ```
 
 
