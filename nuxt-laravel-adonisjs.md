@@ -194,8 +194,9 @@ data push server
 ```
 cd /var/www/html/phpbackend
 
-sudo apt-get install php-xml
-apt-get install --yes zip unzip php-pclzip
+sudo apt-get update
+sudo apt install php-xml
+sudo apt-get install php-mbstring
 composer update
 sudo chown -R :www-data /var/www/html/phpbackend
 sudo chmod -R 775 /var/www/html/phpbackend/storage
