@@ -193,12 +193,12 @@ sudo mv composer.phar /usr/local/bin/composer
 data push server
 ```
 cd /var/www/html/phpbackend
-composer update
+
 sudo apt-get install php-xml
 apt-get install --yes zip unzip php-pclzip
-composer install --no-dev
- sudo chown -R :www-data /var/www/html/phpbackend
- sudo chmod -R 775 /var/www/html/phpbackend/storage
+composer update
+sudo chown -R :www-data /var/www/html/phpbackend
+sudo chmod -R 775 /var/www/html/phpbackend/storage
 sudo chmod -R 775 /var/www/html/phpbackend/bootstrap/cache
 ```
 #####Mysql Create Use
