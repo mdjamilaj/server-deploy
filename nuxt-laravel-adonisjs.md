@@ -148,7 +148,7 @@ Zip File transfer
 ```
 scp root@206.189.132.184:/var/www/html.zip root@65.20.81.93:/var/www
 
-``
+```
 
 ```
 sudo chmod +x post-receive
@@ -304,5 +304,15 @@ find /var/www/html/phpbackend -type f -exec chmod 644 {} \;
 sudo chmod -R 755 /var/www/html/phpbackend
 ```
 
-
+#Certbot add linux
+https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
+```
+apt install snapd
+snap install core
+snap refresh core
+sudo snap install --classic certbot  //Don't no it's mandatory.
+sudo apt install certbot python3-certbot-nginx
+sudo certbot certonly --nginx
+sudo certbot --nginx -d example.com -d www.example.com
+```
 
