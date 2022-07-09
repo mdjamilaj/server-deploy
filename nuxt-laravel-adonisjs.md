@@ -193,7 +193,7 @@ sudo mv composer.phar /usr/local/bin/composer
 data push server
 ```
 cd /var/www/html/phpbackend
-composer install update
+composer update
 sudo apt-get install php-xml
 apt-get install --yes zip unzip php-pclzip
 composer install --no-dev
