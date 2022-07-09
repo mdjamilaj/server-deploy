@@ -63,7 +63,7 @@ sudo systemctl restart nginx
  curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh 
  nano install_nvm.sh 
  bash install_nvm.sh 
- ource ~/.profile 
+ source ~/.profile 
  nvm ls-remote 
  nvm install 14.17.4 
  nvm use 14.17.4 
@@ -157,16 +157,10 @@ git push prod master
 ##### PM2 install
 ```
  npm install pm2 -g 
- cd /var/www/html/frontend
- pm2 start npm -- start 
+ cd /var/www/html
+ pm2 start ecosystem.config.js
 ```
-if use spasific port than run the command
 
- ```
-pm2 start test --interpreter none -- --port 5000
- pm2 start test --interpreter none -- --port your_port 
- pm2 start npm --name "test" -- run start 
-```
 # Laravel App Setup
 
 ```
@@ -180,7 +174,7 @@ sudo nano /etc/php/7.4/fpm/php.ini
 ```
 Search ctrl+w `cgi.fix_pathinfo=` Uncomment & set 0
 ```
-sudo systemctl restart php7.0-fpm
+sudo systemctl restart php7.4-fpm
 sudo service nginx restart
 ```
 ##### Composer Install
