@@ -142,6 +142,14 @@ do
         echo "Hello Jamil, Everything work fine!"
 done
 ```
+
+Zip File transfer
+
+```
+scp root@206.189.132.184:/var/www/html.zip root@65.20.81.93:/var/www
+
+``
+
 ```
 sudo chmod +x post-receive
 mkdir /var/www/html/frontend
