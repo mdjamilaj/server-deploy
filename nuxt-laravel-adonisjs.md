@@ -205,7 +205,7 @@ sudo chmod -R 775 /var/www/html/phpbackend/bootstrap/cache
 #####Mysql Create Use
 
 ```
-CREATE USER 'user_name'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'tinams_admin'@'localhost' IDENTIFIED BY '#@009257Ad@#';
 GRANT ALL PRIVILEGES ON * . * TO 'tinams_admin'@'localhost';
 FLUSH PRIVILEGES;
 
