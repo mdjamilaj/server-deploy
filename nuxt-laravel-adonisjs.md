@@ -65,8 +65,8 @@ sudo systemctl restart nginx
  bash install_nvm.sh 
  source ~/.profile 
  nvm ls-remote 
- nvm install 14.17.4 
- nvm use 14.17.4 
+ nvm install 12.0.0
+ nvm use 12.0.0 
  node -v  
  npm -v  
 ```
