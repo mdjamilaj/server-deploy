@@ -137,6 +137,10 @@ apt install composer
 composer install --no-dev
 sudo apt-get update
 sudo apt install php-xml
+sudo apt install php-xml
+sudo apt install php7.4-gd
+sudo apt install php7.4-mbstring
+sudo apt install php-zip
 composer install --no-dev
 sudo chown -R :www-data /var/www/server
 sudo chmod -R 775 /var/www/server/storage
