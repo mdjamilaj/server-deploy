@@ -239,10 +239,13 @@ chmod -R guo+w storage
 php artisan cache:clear
 
 mysql
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password11111111111111111444444444aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*A';
-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+CREATE USER 'tinams_admin'@'localhost' IDENTIFIED BY '#@009257Ad@#';
+GRANT ALL PRIVILEGES ON * . * TO 'tinams_admin'@'localhost';
 FLUSH PRIVILEGES;
-CREATE DATABASE newdb;
+
+CREATE DATABASE tinams_admin;
+SHOW DATABASES;
+exit;
 php artisan migrate --seed
 ```
 
