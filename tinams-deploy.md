@@ -144,6 +144,10 @@ sudo apt install php-zip
 composer install --no-dev
 sudo chown -R :www-data /var/www/server
 sudo chmod -R 775 /var/www/server/storage
+
+find /var/www/html/phpbackend -type d -exec chmod 755 {} \;
+find /var/www/html/phpbackend -type f -exec chmod 644 {} \;
+sudo chmod -R 755 /var/www/html/phpbackend
 ```
 ###.env
 ```
