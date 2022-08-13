@@ -50,3 +50,234 @@ sudo chmod -R 777 /var/www/uddoktapay/app/core &&
 sudo chmod -R 777 /var/www/uddoktapay/install/install.uddoktapay
 ```
 
+#Setup Database and Complete Installing...
+
+#Server Code
+
+
+routes/api.php
+```
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UddoktapayController;
+
+Route::post( 'webhook', [UddoktapayController::class, 'webhook'] )->name( 'uddoktapay.webhook' );
+Route::post( 'pay', [UddoktapayController::class, 'pay'] )->name( 'uddoktapay.pay' );
+```
+routes/api.php
+```
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UddoktapayController;
+
+Route::post( 'webhook', [UddoktapayController::class, 'webhook'] )->name( 'uddoktapay.webhook' );
+Route::post( 'pay', [UddoktapayController::class, 'pay'] )->name( 'uddoktapay.pay' );
+```
+
+app/http/controllers/UddoktapayController.php
+
+```
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Library\UddoktaPay;
+use App\Upay;
+use App\User;
+use Illuminate\Http\Request;
+use Log;
+class UddoktapayController extends Controller {
+
+    /**
+     * Show the payment view
+     *
+     * @return void
+     */
+    public function show() {
+        return view( 'uddoktapay.payment-form' );
+    }
+
+    /**
+     * Initializes the payment
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function pay( Request $request ) {
+        $validatedData = $request->validate( [
+            'amount'    => ['required', 'integer'],
+        ] );
+            
+        $user = User::find($request->user_id);
+
+        $order = Upay::create( [
+            'user_id'   => $user->id,
+            'full_name' => $user->name,
+            'email'     => $user->email,
+            'amount'    => $validatedData['amount'],
+        ] );
+
+        $requestData = [
+            'full_name'    => $user->name,
+            'email'        => $user->email,
+            'amount'       => $validatedData['amount'],
+            'metadata'     => $order->id,
+            'redirect_url' => route( 'uddoktapay.success' ),
+            'cancel_url'   => route( 'uddoktapay.cancel' ),
+            'webhook_url'  => env( "UDDOKTAPAY_WEBHOOK_DOMAIN" ),
+        ];
+
+        $paymentUrl = UddoktaPay::init_payment( $requestData );
+        $o=Upay::find($order->id);
+        $o->paymenturl=$paymentUrl;
+        $o->save();
+        return $paymentUrl;
+    }
+
+    /**
+     * Reponse from sever
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function webhook( Request $request ) {
+
+        $headerApi =  $request->header('RT-UDDOKTAPAY-API-KEY');
+
+        if ( $headerApi != env( "UDDOKTAPAY_API_KEY" ) ) {
+            return response( "Unauthorized Action", 403 );
+        }
+
+        $validatedData = $request->validate([
+            'invoice_id'     => 'required',
+            'metadata'       => 'required',
+            'payment_method' => 'required',
+            'sender_number'  => 'required',
+            'transaction_id' => 'required',
+            'status'         => 'required',
+        ]);
+
+        Upay::findOrFail($validatedData['metadata'])->update( [
+            'status'         => $validatedData['status'],
+            'payment_method' => $validatedData['payment_method'],
+            'sender_number'  => $validatedData['sender_number'],
+            'transaction_id' => $validatedData['transaction_id'],
+            'invoice_id'     => $validatedData['invoice_id'],
+        ]);
+
+        $pay=Upay::find($validatedData['metadata']);
+
+        if($pay->status=='COMPLETED'){
+            $user = User::find($pay->user_id);
+            $user->wallet = $user->wallet+$pay->amount;
+            $user->save();
+        }
+
+        return response( 'Database Updated' );
+    }
+
+    /**
+     * Success URL
+     *
+     * @return void
+     */
+    public function success() {
+        return redirect('https://canvabd.com/upays');
+    }
+
+
+    public function upaytnx($id) {
+
+        return Upay::where('user_id',$id)->get();
+    }
+    /**
+     * Cancel URL
+     *
+     * @return void
+     */
+    public function cancel() {
+        return redirect('https://canvabd.com/paymentfailed');
+    }
+
+    public function cancleallupay()
+    {
+        $transaction = Upay::where('status',NULL)->get();
+        foreach ($transaction as $key => $var) {
+            $value=Upay::find($var->id);
+            $value->delete();
+        }
+        return Redirect::back();
+    }
+
+
+}
+
+```
+
+app/Library/UddoktaPay.php
+
+```
+<?php
+
+namespace App\Library;
+
+// use Illuminate\Support\Facades\Http;
+
+class UddoktaPay {
+    
+    /**
+     * Send payment request
+     *
+     * @param array $requestData
+     * @return void
+     */
+    public static function init_payment($requestData) {
+
+        $client = new \GuzzleHttp\Client();
+        $url= env( "UDDOKTAPAY_PAYMENT_DOMAIN" ) . "/api/checkout";
+
+        // $response = Http::withHeaders( [
+        //     'Content-Type'          => 'application/json',
+        //     'RT-UDDOKTAPAY-API-KEY' => env( "UDDOKTAPAY_API_KEY" ),
+        // ] )
+        // ->asJson()
+        // ->withBody( json_encode( $requestData ), "JSON" )
+        // ->post( env( "UDDOKTAPAY_PAYMENT_DOMAIN" ) . "/api/checkout" );
+
+        
+        $response = $client->request('POST', $url, [ 
+            'headers' => [
+                'Content-Type'          => 'application/json',
+                'RT-UDDOKTAPAY-API-KEY' => env( "UDDOKTAPAY_API_KEY" ),
+            ],
+            'body' => json_encode( $requestData )
+            
+        ]);
+
+        $content  = $response->getBody()->getContents();
+        $d=json_decode($content);
+
+        if ( $d->status ) {
+            return $d->payment_url;
+        } else {
+            dd( $response->getBody()->getContents() );
+        }
+    }
+}
+
+
+```
+
+```
+UDDOKTAPAY_API_KEY=E626-7BC5-E1FE-BDCB
+UDDOKTAPAY_PAYMENT_DOMAIN='https://payment.tryshop.in'
+UDDOKTAPAY_WEBHOOK_DOMAIN='https://admin.tryshop.in/api/webhook'
+```
+
+
+
+.env
+
+```
+UDDOKTAPAY_API_KEY=E626-7BC5-E1FE-BDCB
+UDDOKTAPAY_PAYMENT_DOMAIN='https://payment.tryshop.in'
+UDDOKTAPAY_WEBHOOK_DOMAIN='https://admin.tryshop.in/api/webhook'
+```
