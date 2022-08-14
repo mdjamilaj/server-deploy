@@ -42,12 +42,15 @@ echo "zend_extension=ioncube_loader_lin_7.4.so" > /etc/php/7.4/mods-available/io
 ln -s /etc/php/7.4/mods-available/ioncube.ini /etc/php/7.4/cli/conf.d/01-ioncube.ini
 systemctl restart php7.4-fpm
 sudo apt-get install php7.4-curl
+sudo apt install php7.4-bcmath
 sudo certbot --nginx -d payment.tryshop.in
 sudo chmod -R 777 /var/www/uddoktapay/app/config/database.php && 
 sudo chmod -R 777 /var/www/uddoktapay/app/config/config.php && 
 sudo chmod -R 777 /var/www/uddoktapay//app/logs && 
 sudo chmod -R 777 /var/www/uddoktapay/app/core && 
 sudo chmod -R 777 /var/www/uddoktapay/install/install.uddoktapay
+
+https://serverok.in/how-to-install-ioncube-on-ubuntu-20-04
 ```
 
 #Setup Database and Complete Installing...
