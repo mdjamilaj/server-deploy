@@ -27,3 +27,7 @@ $ /etc/init.d/apache2 restart
 php -d memory_limit=-1 /usr/local/bin/composer install
 
 ```
+
+
+
+##Sometime laravel cors issue are comming by laravel composer lock json file update. So we should re install composer.
