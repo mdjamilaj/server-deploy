@@ -18,3 +18,12 @@ $ cd /etc/apache2/mods-available
 $ sudo a2enmod headers
 $ /etc/init.d/apache2 restart
 ```
+
+
+##Composer Install issue fix
+
+```
+
+php -d memory_limit=-1 /usr/local/bin/composer install
+
+```
