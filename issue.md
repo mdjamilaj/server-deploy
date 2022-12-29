@@ -31,3 +31,8 @@ php -d memory_limit=-1 /usr/local/bin/composer install
 
 
 ##Sometime laravel cors issue are comming by laravel composer lock json file update. So we should re install composer.
+
+
+
+### Php Version issue Composer install
+composer install --ignore-platform-req=php
