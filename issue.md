@@ -1,3 +1,7 @@
+### Firewall allow command
+
+ ```ufw allow 'Nginx full'```
+
 ### File download cors issue apache
 
 ```$ nano /etc/apache2/sites-available/000-default-le-ssl.conf```
