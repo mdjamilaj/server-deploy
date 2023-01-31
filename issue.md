@@ -44,3 +44,9 @@ php -d memory_limit=-1 /usr/local/bin/composer install
 
 ### Curl Verify cert.pem file issue fix.
 https://stackoverflow.com/questions/50345702/laravel-guzzle-curl-error-77-error-setting-certificate-verify-locations
+
+
+
+###SSH issue
+
+```   Windows update check and resatrt fix it    ```
