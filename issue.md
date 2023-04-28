@@ -50,3 +50,12 @@ https://stackoverflow.com/questions/50345702/laravel-guzzle-curl-error-77-error-
 ###SSH issue
 
 ```   Windows update check and resatrt fix it    ```
+
+
+### React npm install issue
+
+```
+npm install --legacy-peer-deps
+
+```
+
