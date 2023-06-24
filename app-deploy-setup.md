@@ -21,4 +21,10 @@ flutter pub run flutter_launcher_icons:main
 flutter pub global activate rename
 flutter pub global run rename --bundleId com.gamesbazarbd.teammahal
 flutter pub global run rename --appname "Games Bazar BD"
+flutter build appbundle
+```
+- [ ] Create an upload keystore
+* cd to go Under the bin folder 'C:\Program Files (x86)\Java\jre-1.8\bin'
+```
+./keytool -genkey -v -keystore ./upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
