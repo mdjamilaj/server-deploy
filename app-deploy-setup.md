@@ -28,3 +28,51 @@ flutter build appbundle
 ```
 ./keytool -genkey -v -keystore ./upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
+*after create the file cut and paste 'project/android/app'
+
+- [ ] Create a file named [project]/android/key.properties
+```
+storePassword=<password-from-previous-step>
+keyPassword=<password-from-previous-step>
+keyAlias=upload
+storeFile=<keystore-file-location>
+```
+
+- [ ] Configure gradle to use your upload key when building your app in release mode by editing the [project]/android/app/build.gradle file.
+
+*Add the keystore information from your properties file before the android block:
+```
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+ android {
+         ...
+   }
+```
+
+*And Replace the 'buildTypes{}' function to paste under code:
+```
+signingConfigs {
+      release {
+          keyAlias keystoreProperties['keyAlias']
+          keyPassword keystoreProperties['keyPassword']
+          storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+          storePassword keystoreProperties['storePassword']
+      }
+  }
+  buildTypes {
+      release {
+          signingConfig signingConfigs.release
+      }
+  }
+```
+
+- [ ] Re Run the below command:
+```
+flutter build appbundle
+```
+
+* build\app\outputs\bundle\release\app-release.aab
