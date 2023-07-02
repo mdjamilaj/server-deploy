@@ -59,3 +59,10 @@ npm install --legacy-peer-deps
 
 ```
 
+
+
+- [ ] Tailwindcss Issue:
+
+```
+npm install -D tailwindcss postcss autoprefixer
+```
