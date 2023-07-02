@@ -64,6 +64,5 @@ npm install --legacy-peer-deps
 - [ ] Tailwindcss Issue:
 
 ```
-rm -rf node_modules && rm -rf package-lock.json && rm -rf nuxt && npm cache clean --force
- && npm install && npm install -D tailwindcss postcss autoprefixer
+rm -rf node_modules && rm -rf package-lock.json && rm -rf nuxt && npm cache clean --force && npm install && npm install -D tailwindcss postcss autoprefixer && npm run build
 ```
