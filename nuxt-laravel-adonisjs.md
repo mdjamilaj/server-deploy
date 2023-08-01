@@ -34,7 +34,7 @@ server {
     }
 }
 server {
-    root /var/www/html/phpbackend/public;
+    root /var/www/topupbuzz/server/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name admin.nexxers.com www.admin.nexxers.com;
 
@@ -112,9 +112,9 @@ do
         echo "Push received! Deploying branch: ${BRANCH}..."
 
         # "Deploy" the branch we just pushed to a specific directory.
-        git --work-tree=/var/www/html/phpbackend --git-dir=/home/repo checkout -f $BRANCH
+        git --work-tree=/var/www/topupbuzz/server --git-dir=/home/repo checkout -f $BRANCH
 
-        cd /var/www/html/phpbackend
+        cd /var/www/topupbuzz/server
         php artisan optimize:clear
     elif [[ $BRANCH == "nodebackend" ]];
     then
@@ -153,7 +153,7 @@ scp root@206.189.132.184:/var/www/html.zip root@65.20.81.93:/var/www
 ```
 sudo chmod +x post-receive
 mkdir /var/www/html/frontend
-mkdir /var/www/html/phpbackend
+mkdir /var/www/topupbuzz/server
 mkdir /var/www/html/nodebackend
 ```
 ##### Repo add local
@@ -192,15 +192,15 @@ sudo mv composer.phar /usr/local/bin/composer
 ```
 data push server
 ```
-cd /var/www/html/phpbackend
+cd /var/www/topupbuzz/server
 
 sudo apt-get update
 sudo apt install php-xml
 sudo apt-get install php-mbstring
 composer update
-sudo chown -R :www-data /var/www/html/phpbackend
-sudo chmod -R 775 /var/www/html/phpbackend/storage
-sudo chmod -R 775 /var/www/html/phpbackend/bootstrap/cache
+sudo chown -R :www-data /var/www/topupbuzz/server
+sudo chmod -R 775 /var/www/topupbuzz/server/storage
+sudo chmod -R 775 /var/www/topupbuzz/server/bootstrap/cache
 ```
 #####Mysql Create Use
 
@@ -214,7 +214,7 @@ SHOW DATABASES;
 
 mysql -u root -p'pass'
 ```
-`nano /var/www/html/phpbackend/.env`
+`nano /var/www/topupbuzz/server/.env`
 
 ```
 APP_NAME=Laravel
@@ -300,9 +300,9 @@ flush privileges;
 #permission
 
 ```
-find /var/www/html/phpbackend -type d -exec chmod 755 {} \;
-find /var/www/html/phpbackend -type f -exec chmod 644 {} \;
-sudo chmod -R 755 /var/www/html/phpbackend
+find /var/www/topupbuzz/server -type d -exec chmod 755 {} \;
+find /var/www/topupbuzz/server -type f -exec chmod 644 {} \;
+sudo chmod -R 755 /var/www/topupbuzz/server
 ```
 
 #Certbot add linux
