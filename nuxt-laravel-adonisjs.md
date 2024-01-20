@@ -292,7 +292,7 @@ FACEBOOK_CLIENT_SECRET=3393279459cfcbf617cbe7535b9a14ee
 
 my sql access
 ```
-ALTER USER 'tinams_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY '#@009257Ad@#';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Ad009257';
 flush privileges;
 ```
 
