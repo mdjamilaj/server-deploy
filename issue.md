@@ -4,9 +4,11 @@
 
 ### Twinland update issue fix.
 
- ``` .translate-x-full{
+ ```
+.translate-x-full{
         --tw-translate-x: 100%  !important;
-} ```
+}
+```
 
 
 ### File download cors issue apache
