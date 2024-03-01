@@ -2,6 +2,13 @@
 
  ```ufw allow 'Nginx full'```
 
+### Twinland update issue fix.
+
+ ``` .translate-x-full{
+        --tw-translate-x: 100%  !important;
+} ```
+
+
 ### File download cors issue apache
 
 ```$ nano /etc/apache2/sites-available/000-default-le-ssl.conf```
