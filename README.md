@@ -9,3 +9,9 @@
   cp .env build/.env
   pm2 restart server
 ```
+
+
+- nginx 
+```
+cd /etc/nginx/sites-available
+```
