@@ -1,7 +1,7 @@
 
 #Run those command
 
-`
+``` 
 sudo  mkdir pay.git && cd pay.git && git init --bare
 nano hooks/post-receive
 
@@ -18,12 +18,12 @@ cd /var/www/client
 echo ‘post-receive: building…’
 npm install && npm run build && npm install -g pm2 && pm2 start npm --name "client" -- start && pm2 restart client
 
-`
+``` 
 
 After setup run this command
 
-`
+``` 
 cd hooks
 sudo chmod +x post-receive
-`
+``` 
 
