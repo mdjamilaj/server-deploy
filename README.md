@@ -19,3 +19,8 @@
 ```
 cd /etc/nginx/sites-available
 ```
+
+-laravel all users logout
+```
+rm -rf storage/framework/sessions/*
+```
