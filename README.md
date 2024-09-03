@@ -1,4 +1,8 @@
-#### Some of our important need code
+-  re-build and restart adonisjs server:
+``` 
+  git fetch --all
+  git reset --hard origin/master
+```
 
 -  re-build and restart adonisjs server:
 ``` 
