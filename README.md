@@ -20,6 +20,12 @@
 cd /etc/nginx/sites-available
 ```
 
+- delete old data by time
+```
+DELETE FROM orders
+WHERE created_at < DATE_SUB(NOW(), INTERVAL 1 MONTH);
+```
+
 - laravel all users logout
 ```
 rm -rf storage/framework/sessions/*
