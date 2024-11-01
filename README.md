@@ -7,7 +7,7 @@
 -  re-build and restart adonisjs server:
 ```
   rm -rf package-lock.json node_modules && npm i --legacy-peer-deps
-  node ace build --production
+  node ace build --production --ignore-ts-errors
   cd build
   npm ci --production --legacy-peer-deps
   cd ..
