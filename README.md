@@ -36,3 +36,12 @@ rm -rf storage/framework/sessions/*
 ```
 npm install --save mysql2
 ```
+
+- txtid use but not order (end error)
+```
+sudo nano /etc/systemd/resolved.conf
+[Resolve]
+DNS=8.8.8.8 8.8.4.4
+FallbackDNS=1.1.1.1 1.0.0.1
+sudo systemctl restart systemd-resolved
+```
