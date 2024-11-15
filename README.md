@@ -31,3 +31,8 @@ WHERE created_at < DATE_SUB(NOW(), INTERVAL 1 MONTH);
 ```
 rm -rf storage/framework/sessions/*
 ```
+
+- install mysql2
+```
+npm install --save mysql2
+```
