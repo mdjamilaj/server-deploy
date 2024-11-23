@@ -19,6 +19,8 @@
 - nginx 
 ```
 cd /etc/nginx/sites-available
+sudo nginx -t
+sudo systemctl restart nginx
 ```
 
 - delete old data by time
