@@ -23,6 +23,11 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+- permissions
+```
+sudo chmod -R 777 /var/www/site
+```
+
 - delete old data by time
 ```
 DELETE FROM orders
