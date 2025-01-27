@@ -59,3 +59,8 @@ DELETE FROM users
 WHERE wallet <= 0;
 
 ```
+
+- transfer file
+```
+scp root@139.84.163.105:/var/www/topupbuzz/pay.zip root@139.84.164.31:/var/www/topupbuzz
+```
