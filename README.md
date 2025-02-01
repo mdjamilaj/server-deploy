@@ -64,3 +64,13 @@ WHERE wallet <= 0;
 ```
 scp root@139.84.163.105:/var/www/topupbuzz/pay.zip root@139.84.164.31:/var/www/topupbuzz
 ```
+
+- redis crush issue fix
+```
+sudo apt autoremove && sudo apt clean
+sudo rm -rf /var/cache/* && sudo rm -rf /var/log/* && rm -rf ~/.cache/google-chrome/* && sudo rm -rf /var/log/*
+sudo find /root/.config/google-chrome/DeferredBrowserMetrics -type f -delete
+redis-cli flushall
+clear
+node ace queue:listen
+```
