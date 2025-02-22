@@ -23,6 +23,11 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+- new site update
+  ```
+  rm -rf package-lock.json node_modules && npm i && npm run build && pm2 delete site_client && cd .. && pm2 start ecosystem.config.js
+```
+
 - permissions
 ```
 sudo chmod -R 777 /var/www/site
