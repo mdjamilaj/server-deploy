@@ -79,3 +79,10 @@ redis-cli flushall
 clear
 node ace queue:listen
 ```
+
+- console send desktop
+```
+query session
+tscon rdp-tcp#0 /dest:console
+```
+
