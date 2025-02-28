@@ -1,18 +1,18 @@
 -  git pull ignore local change:
 ``` 
-  git fetch --all
-  git reset --hard origin/master
+git fetch --all
+git reset --hard origin/master
 ```
 
 -  re-build and restart adonisjs server:
 ```
-  rm -rf package-lock.json node_modules && npm i --legacy-peer-deps
-  node ace build --production --ignore-ts-errors
-  cd build
-  npm ci --production --legacy-peer-deps
-  cd ..
-  cp .env build/.env
-  pm2 restart server
+rm -rf package-lock.json node_modules && npm i --legacy-peer-deps
+node ace build --production --ignore-ts-errors
+cd build
+npm ci --production --legacy-peer-deps
+cd ..
+cp .env build/.env
+pm2 restart server
 ```
 
 
