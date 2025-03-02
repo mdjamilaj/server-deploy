@@ -35,7 +35,7 @@ sudo chmod -R 777 /var/www/site
 
 -new script 
 ```
-rm -rf package-lock.json node_modules && npm i && npm run build && npm install @prisma/client@5.18.0 && npm install @auth/prisma-adapter@2.4.2
+rm -rf package-lock.json node_modules && npm i && npm install @prisma/client@5.18.0 && npm install @auth/prisma-adapter@2.4.2 && npm run build
 
 ```
 
