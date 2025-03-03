@@ -84,6 +84,9 @@ sudo find /root/.config/google-chrome/DeferredBrowserMetrics -type f -delete
 redis-cli flushall
 clear
 node ace queue:listen
+
+set NODE_OPTIONS=--max-old-space-size=4096 && node ace queue:listen
+
 ```
 
 - console send desktop
