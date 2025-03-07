@@ -39,6 +39,17 @@ rm -rf package-lock.json node_modules && npm i && npm install @prisma/client@5.1
 
 ```
 
+-  re-build and restart adonisjs server:
+```
+rm -rf package-lock.json node_modules && npm i --legacy-peer-deps
+npm run build
+cd build
+npm ci --production --legacy-peer-deps
+cd ..
+cp .env build/.env
+pm2 restart server
+```
+
 - delete old data by time
 ```
 DELETE FROM orders
