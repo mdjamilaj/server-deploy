@@ -308,9 +308,9 @@ sudo chmod -R 755 /var/www/site/server
 #Certbot add linux
 https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
 ```
-apt install snapd
-snap install core
-snap refresh core
+sudo apt install snapd
+sudo snap install core
+sudo snap refresh core
 sudo snap install --classic certbot  //Don't no it's mandatory.
 sudo apt install certbot python3-certbot-nginx
 sudo certbot certonly --nginx
