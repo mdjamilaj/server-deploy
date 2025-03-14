@@ -106,3 +106,11 @@ query session
 tscon rdp-tcp#0 /dest:console
 ```
 
+-nuxt icon error
+```
+npm remove @vite-pwa/nuxt
+npm install @vite-pwa/nuxt
+node 18.19.0
+```
+
+
