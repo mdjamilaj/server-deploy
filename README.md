@@ -53,7 +53,7 @@ pm2 restart server
 - delete old data by time
 ```
 DELETE FROM orders
-WHERE created_at < DATE_SUB(NOW(), INTERVAL 1 MONTH);
+WHERE created_at < DATE_SUB(NOW(), INTERVAL 30 DAY);
 ```
 
 - laravel all users logout
