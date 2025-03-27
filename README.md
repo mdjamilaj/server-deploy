@@ -25,7 +25,7 @@ sudo systemctl restart nginx
 
 - new site update
 ```
-rm -rf package-lock.json node_modules && npm i && npm run build && pm2 delete site_client && cd .. && pm2 start ecosystem.config.js
+rm -rf package-lock.json node_modules && nvm use 18.19.0 && npm remove @vite-pwa/nuxt && npm install @vite-pwa/nuxt && npm i && npm run build && pm2 delete site_client && cd .. && pm2 start ecosystem.config.js
 ```
 
 - permissions
