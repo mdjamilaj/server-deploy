@@ -73,6 +73,8 @@ sudo nano /etc/systemd/resolved.conf
 DNS=8.8.8.8 8.8.4.4
 FallbackDNS=1.1.1.1 1.0.0.1
 sudo systemctl restart systemd-resolved
+
+sudo resolvectl flush-caches
 ```
 
 - wallet user only
