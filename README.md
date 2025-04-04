@@ -110,8 +110,6 @@ tscon rdp-tcp#0 /dest:console
 
 
 -nginx change
-```
-ln -s /etc/nginx/sites-available/.conf /etc/nginx/sites-enabled/
-```
+```ln -s /etc/nginx/sites-available/.conf /etc/nginx/sites-enabled/```
 
 
