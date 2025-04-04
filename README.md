@@ -110,10 +110,9 @@ tscon rdp-tcp#0 /dest:console
 
 -nuxt icon error
 ```
-nvm use 18.19.0
-npm remove @vite-pwa/nuxt
-npm install @vite-pwa/nuxt
-
+-nginx change
+```
+ln -s /etc/nginx/sites-available/bdtopsell.conf /etc/nginx/sites-enabled/
 ```
 
 
